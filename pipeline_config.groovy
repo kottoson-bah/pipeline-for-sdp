@@ -9,3 +9,7 @@ keywords {
 stages {
   merge = true
 }
+
+steps {
+  merge = true
+}
