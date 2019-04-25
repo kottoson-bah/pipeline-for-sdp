@@ -1,7 +1,3 @@
-node {
-  unstash "workspace"
-  input()
-}
 unit_test()
 static_code_analysis()
 build()
