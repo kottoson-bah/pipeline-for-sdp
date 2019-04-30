@@ -12,6 +12,7 @@ void call() {
       if (this.get_repo_name() == "sdp-helm-chart") {
         unstash "workspace"
         this.install_sdp()
+      }
       // else clone sdp-helm-chart and do NOT unstash the workspace
       else {
         withGit url: sdp_helm_chart_url, cred: sdp_helm_chart_cred, {
