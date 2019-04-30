@@ -6,41 +6,41 @@ void call() {
     def sdp_helm_chart_cred = config.sdp_helm_chart?.cred_id ?: scm.getUserRemoteConfigs()[0].credentialsId.toString()
 
 
-    // deploy Jenkins on target Openshift cluster
-    node() {
-      // if testing sdp-helm-chart, unstash the workspace
-      if (this.get_repo_name() == "sdp-helm-chart") {
+  // deploy Jenkins on target Openshift cluster
+    // if testing sdp-helm-chart, unstash the workspace
+    if (this.get_repo_name() == "sdp-helm-chart") {
+      node() {
         unstash "workspace"
         this.install_sdp()
       }
-      // else clone sdp-helm-chart and do NOT unstash the workspace
-      else {
-        withGit url: sdp_helm_chart_url, cred: sdp_helm_chart_cred, {
-          this.install_sdp()
-        }
-      }
-      // login to target Openshift cluster
-
-      // install SDP
-
-    // if testing jenkins-templating-engine
-      // optionally unstash the workspace
-      // install the build artifact
-      // wait for Jenkins to restart
-
-    // create Jenkins job(s)
-      // clone repo w/ Job DSL files
-      // if testing sdp-libraries, update the files to use the current branch
-
-    // execute Jenkins jobs
-      // or, if they just start automatically, wait for them to finish
-      // when finished, record results
-
-    // display Jenkins job results
-      // fail if over a certain threshold
-      // display failed job
-      // fetch output of failed job and archive the logs
     }
+    // else clone sdp-helm-chart and do NOT unstash the workspace
+    else {
+      withGit url: sdp_helm_chart_url, cred: sdp_helm_chart_cred, {
+        this.install_sdp()
+      }
+    }
+    // login to target Openshift cluster
+
+    // install SDP
+
+  // if testing jenkins-templating-engine
+    // optionally unstash the workspace
+    // install the build artifact
+    // wait for Jenkins to restart
+
+  // create Jenkins job(s)
+    // clone repo w/ Job DSL files
+    // if testing sdp-libraries, update the files to use the current branch
+
+  // execute Jenkins jobs
+    // or, if they just start automatically, wait for them to finish
+    // when finished, record results
+
+  // display Jenkins job results
+    // fail if over a certain threshold
+    // display failed job
+    // fetch output of failed job and archive the logs
   }
 }
 
