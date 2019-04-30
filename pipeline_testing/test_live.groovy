@@ -3,7 +3,7 @@ void call() {
     echo "Hello from test_live.groovy"
     // deploy Jenkins on target Openshift cluster
       // if testing sdp-helm-chart, unstash the workspace
-      echo "This is the ${scm.getUserRemoteConfigs()[0].getName()} repository"
+      echo "This is the ${scm.getUserRemoteConfigs()[0].toString()} repository"
       // else clone sdp-helm-chart and do NOT unstash the workspace
       // login to target Openshift cluster
       // install SDP
