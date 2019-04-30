@@ -1,5 +1,6 @@
 libraries {
   merge = true
+  github_enterprise
   pipeline_testing {
     ocp {
       url = "master.ocp-dev.microcaas.net:8443"

@@ -2,8 +2,8 @@ void call() {
   stage("test live"){
     echo "Hello from test_live.groovy"
 
-    def sdp_helm_chart_url = config.sdp_helm_chart.url ?: "https://github.com/boozallen/sdp-helm-chart.git"
-    def sdp_helm_chart_cred = config.sdp_helm_chart.cred_id ?: scm.getUserRemoteConfigs()[0].credentialsId.toString()
+    def sdp_helm_chart_url = config.sdp_helm_chart?.url ?: "https://github.com/boozallen/sdp-helm-chart.git"
+    def sdp_helm_chart_cred = config.sdp_helm_chart?.cred_id ?: scm.getUserRemoteConfigs()[0].credentialsId.toString()
 
 
     // deploy Jenkins on target Openshift cluster
@@ -50,8 +50,8 @@ String get_repo_name() {
 }
 
 void install_sdp() {
-  def ocp_url = config.ocp.url ?: { error "no value for config.openshift_cluster.url"}
-  def oc_cluster_cred_id = config.ocp.credential_id ?: { error "no value for config.openshift_cluster.crednetial_id"}
+  def ocp_url = config.ocp?.url ?: { error "no value for config.openshift_cluster.url"}
+  def oc_cluster_cred_id = config.ocp?.credential_id ?: { error "no value for config.openshift_cluster.crednetial_id"}
   def sdp_installation_name = config.sdp_installation_name ?: "sdp"
 
   inside_sdp_image "openshift_helm", {
