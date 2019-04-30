@@ -40,7 +40,7 @@ void call() {
       // fail if over a certain threshold
       // display failed job
       // fetch output of failed job and archive the logs
-
+    }
   }
 }
 
