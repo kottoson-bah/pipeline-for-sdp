@@ -1,5 +1,12 @@
 libraries {
   merge = true
+  test_live {
+    ocp {
+      url = "master.ocp-dev.microcaas.net:8443"
+      credential_id = "oc-admin"
+    }
+    sdp_installation_name = "test-live"
+  }
 }
 
 keywords {
@@ -17,7 +24,7 @@ steps {
 template_methods{
   unit_test
   static_code_analysis
-  build    
+  build
   scan_container_image
   penetration_test
   accessibility_compliance_test
