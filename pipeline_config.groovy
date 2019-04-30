@@ -1,6 +1,6 @@
 libraries {
   merge = true
-  test_live {
+  pipeline_testing {
     ocp {
       url = "master.ocp-dev.microcaas.net:8443"
       credential_id = "oc-admin"
