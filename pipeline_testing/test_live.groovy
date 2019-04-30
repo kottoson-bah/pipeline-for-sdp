@@ -57,6 +57,7 @@ void install_sdp() {
   inside_sdp_image "openshift_helm", {
     withCredentials([usernamePassword(credentialsId: oc_cluster_cred_id, passwordVariable: 'token', usernameVariable: 'user')]) {
       this.oc_login(ocp_url, token)
+      sh "cp values.template.yaml values.yaml"
       sh "./installer.sh -n ${sdp_installation_name} -a"
     }
   }
