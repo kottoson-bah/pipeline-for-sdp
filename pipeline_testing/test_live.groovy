@@ -1,4 +1,4 @@
-call() {
+void call() {
   stage("test live"){
     echo "Hello from test_live.groovy"
     // deploy Jenkins on target Openshift cluster
