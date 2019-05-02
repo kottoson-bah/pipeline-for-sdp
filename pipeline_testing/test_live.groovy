@@ -61,7 +61,7 @@ void install_sdp() {
       def chart_values = readYaml file: "values.template.yaml"
       chart_values.global.domain = ocp_rt_subdomain
       sh "rm values.yaml || echo \"writing values file\""
-      writeYaml file: "values.yaml" data: chart_values
+      writeYaml file: "values.yaml", data: chart_values
       sh "export GH_USER=${user} && export GH_PAT=${token} && ./installer.sh -n ${sdp_installation_name} -a"
     }
   }
