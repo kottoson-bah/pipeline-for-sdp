@@ -5,6 +5,7 @@ libraries {
     ocp {
       url = "master.ocp-dev.microcaas.net:8443"
       credential_id = "oc-admin"
+      route_subdomain = "apps.ocp-dev.microcaas.net"
     }
     sdp_installation_name = "test-live"
   }

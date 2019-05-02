@@ -51,14 +51,18 @@ String get_repo_name() {
 
 void install_sdp() {
   def ocp_url = config.ocp?.url ?: { error "no value for config.openshift_cluster.url"}
-  def oc_cluster_cred_id = config.ocp?.credential_id ?: { error "no value for config.openshift_cluster.crednetial_id"}
+  def ocp_cred_id = config.ocp?.credential_id ?: { error "no value for config.openshift_cluster.crednetial_id"}
+  def ocp_rt_subdomain = config.ocp?.route_subdomain ?: { error "no value for config.ocp.route_subdomain"}
   def sdp_installation_name = config.sdp_installation_name ?: "sdp"
 
   inside_sdp_image "openshift_helm", {
-    withCredentials([usernamePassword(credentialsId: oc_cluster_cred_id, passwordVariable: 'token', usernameVariable: 'user')]) {
+    withCredentials([usernamePassword(credentialsId: ocp_cred_id, passwordVariable: 'token', usernameVariable: 'user')]) {
       this.oc_login(ocp_url, token)
-      sh "cp values.template.yaml values.yaml"
-      sh "./installer.sh -n ${sdp_installation_name} -a"
+      def chart_values = readYaml file: "values.template.yaml"
+      chart_values.global.domain = ocp_rt_subdomain
+      sh "rm values.yaml"
+      writeYaml file: values.yaml
+      sh "export GH_USER=${user} && export GH_PAT=${token} && ./installer.sh -n ${sdp_installation_name} -a"
     }
   }
 }
