@@ -6,7 +6,7 @@ void call() {
     def sdp_helm_chart_cred = config.sdp_helm_chart?.cred_id ?: scm.getUserRemoteConfigs()[0].credentialsId.toString()
 
 
-  // deploy Jenkins on target Openshift cluster
+    // deploy Jenkins on target Openshift cluster
     // if testing sdp-helm-chart, unstash the workspace
     if (this.get_repo_name() == "sdp-helm-chart") {
       node() {
@@ -20,18 +20,20 @@ void call() {
         this.install_sdp()
       }
     }
-    // login to target Openshift cluster
 
-    // install SDP
 
-  // if testing jenkins-templating-engine
-    // optionally unstash the workspace
-    // install the build artifact
-    // wait for Jenkins to restart
+    // if testing jenkins-templating-engine
+    if (this.get_repo_name() == "jenkins-templating-engine") {
+      echo "I'm running a pipeline for jenkins-templating-engine" //placeholder
+      // unstash the workspace
+      // install the build artifact
+      // wait for Jenkins to restart
+    }
+
 
   // create Jenkins job(s)
-    // clone repo w/ Job DSL files
-    // if testing sdp-libraries, update the files to use the current branch
+    // create the seed job
+    // execute the seed job
 
   // execute Jenkins jobs
     // or, if they just start automatically, wait for them to finish
@@ -76,3 +78,5 @@ void oc_login(ocp_url, token){
     sh "oc login --insecure-skip-tls-verify ${ocp_url} -u ${user} -p ${token} > /dev/null"
   }
 }
+
+void create_seed_job() {}

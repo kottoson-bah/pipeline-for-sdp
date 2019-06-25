@@ -1,6 +1,7 @@
 libraries {
   merge = true
-  github_enterprise
+  github
+  sonarqube
   pipeline_testing {
     ocp {
       url = "master.ocp-dev.microcaas.net:8443"
@@ -9,10 +10,18 @@ libraries {
     }
     sdp_installation_name = "test-live"
   }
+  sdp {
+    images{
+      registry = "https://docker-registry.default.svc:5000"
+      repo = "keegan-sdp"
+      cred = "openshift-docker-registry"
+    }
+  }
 }
 
 keywords {
   merge = true
+  master = /^[mM]aster$/
 }
 
 stages {
@@ -37,4 +46,5 @@ template_methods{
   publish
   deploy
   deploy_docs
+  check_version
 }
