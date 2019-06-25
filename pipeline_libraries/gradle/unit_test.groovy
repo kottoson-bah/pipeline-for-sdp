@@ -1,6 +1,6 @@
 def call() {
   node {
-    
+    unstash "workspace"
     // if no gradle image set, use latest
     def gradle_image = "latest"
     // else
