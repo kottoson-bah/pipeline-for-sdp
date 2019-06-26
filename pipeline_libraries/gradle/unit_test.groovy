@@ -20,7 +20,7 @@ def call() {
     }
 
     // inside gradle image
-    docker.image("${gradle_image}").inside("--oom-kill-disable -m 3500m"){
+    docker.image("${gradle_image}").inside("--oom-kill-disable -m 4000m"){
       // run unit tests
       sh "gradle test"
       // archive report
