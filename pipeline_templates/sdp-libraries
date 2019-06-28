@@ -1,5 +1,2 @@
-//unit_test()
-node{
-  sh "make test docker"
-}
+unit_test()
 static_code_analysis()

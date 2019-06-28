@@ -47,4 +47,5 @@ template_methods{
   deploy
   deploy_docs
   check_version
+  make_test_docker
 }
