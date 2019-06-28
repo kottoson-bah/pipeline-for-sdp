@@ -1,10 +1,14 @@
 def call() {
   node {
     unstash "workspace"
-    // if no gradle image set, use latest
-    docker.image(config.image.name).inside("-m 4000m"){
-      sh "./gradlew --no-daemon clean test "
-    }
+    // docker.image(config.image.name).inside("-m 4000m"){
+    //   sh "./gradlew --no-daemon clean test "
+    // }
+
+    sh "docker build -f unit_test.Dockerfile -t pipeline-unit-testing ."
+    sh "docker run --rm -t -v \$(pwd):/app -w /app pipeline-unit-testing gradle --no-daemon test"
+    sh "ls -al"
+
   }
     //archiveArtifacts artifacts: 'target/reports/tests/test/**'
 }
