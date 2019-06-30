@@ -2,7 +2,7 @@ def call() {
   stage("Unit Test"){
     node {
       unstash "workspace"
-      docker.image(config.image.name).inside("-m 4000m"){
+      docker.image(config.image.name).inside{
         sh "./gradlew --no-daemon clean test"
         archiveArtifacts artifacts: 'target/reports/tests/test/**'
       }
