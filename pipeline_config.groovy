@@ -15,7 +15,7 @@ libraries {
   sdp {
     images{
       registry = "https://docker-registry.default.svc:5000"
-      repo = "keegan-sdp"
+      repo = "demo"
       cred = "openshift-docker-registry"
     }
   }
