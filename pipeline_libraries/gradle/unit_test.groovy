@@ -3,7 +3,7 @@ def call() {
     node {
       unstash "workspace"
       docker.image(config.image.name).inside{
-        sh "./gradlew --no-daemon clean test"
+        sh "gradle --no-daemon clean test"
         archiveArtifacts artifacts: 'target/reports/tests/test/**'
       }
 
