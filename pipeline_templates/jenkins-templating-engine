@@ -1,2 +1,21 @@
 unit_test()
 static_code_analysis()
+
+node{
+  stage("Compile Docs"){
+    unstash 'workspace'
+    sh "make docs" 
+    sh "ls -R" 
+    archiveArtifacts 'docs/_build/html/**'
+  }
+}
+
+node{
+  stage("Build HPI"){
+    unstash 'workspace' 
+    docker.image("gradle:4.10.2-jdk8").inside{
+        sh "gradle clean jpi" 
+    }
+    archiveArtifacts 'build/libs/*.hpi'
+  }
+}
