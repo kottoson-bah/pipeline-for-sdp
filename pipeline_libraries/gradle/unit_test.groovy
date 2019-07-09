@@ -2,8 +2,12 @@ def call() {
   stage("Unit Test"){
     node {
       unstash "workspace"
+      
+      def properties_file = new File('gradle.properties')
+      properties_file << 'org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
+      
       docker.image(config.image.name).inside{
-        sh "gradle --no-daemon clean test"
+        sh "gradle clean test"
         archiveArtifacts artifacts: 'target/reports/tests/test/**'
       }
 
