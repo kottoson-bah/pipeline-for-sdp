@@ -8,7 +8,7 @@ def call() {
       
       docker.image(config.image.name).inside{
         sh "gradle clean test"
-        input "proceed when ready"
+        //input "proceed when ready"
         archiveArtifacts artifacts: 'target/reports/tests/test/**'
       }
 
