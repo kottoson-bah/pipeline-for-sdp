@@ -5,9 +5,12 @@ def call() {
       
       def properties_file = new File('gradle.properties')
       properties_file << 'org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
+      sh 'ls -al'
       
       docker.image(config.image.name).inside{
+        sh 'ls -al'
         sh "gradle clean test"
+        sh 'ls -al'
         input "proceed when ready"
         archiveArtifacts artifacts: 'target/reports/tests/test/**'
       }
