@@ -3,8 +3,7 @@ def call() {
     node {
       unstash "workspace"
       
-      def properties_file = new File('gradle.properties')
-      properties_file << 'org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
+      sh 'echo \'org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8\' > gradle.properties'
       sh 'ls -al'
       
       docker.image(config.image.name).inside{
