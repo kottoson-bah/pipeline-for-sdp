@@ -1,4 +1,4 @@
-allow_scm_jenkinsfile = false
+allow_scm_jenkinsfile = true
 
 libraries {
   merge = true
