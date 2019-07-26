@@ -1,5 +1,3 @@
-allow_scm_jenkinsfile = true
-
 libraries {
   merge = true
   github

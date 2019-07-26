@@ -7,4 +7,4 @@
 // deploy()
 // deploy_docs()
 
-error("No tennant pipeline template found")
+error("Please select one of the non-default pipeline templates")
