@@ -7,4 +7,4 @@
 // deploy()
 // deploy_docs()
 
-error("Please select one of the non-default pipeline templates")
+error("Please include a Jenkinsfile in your source code repository")
